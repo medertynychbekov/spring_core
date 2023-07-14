@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id="meder" class="org.example.model.User">
+        <!-- Задаю значения (внедряю зависимость // другой Спринг Бин )  через конструктор -->
+        <property name="name" value="${user.name}"/>
+        <property name="age" value="${user.age}"/>
+        <property name="passport" ref="meders_passport"/>
+    </bean>
+
+    <bean id="this_is_my_second_bean" class="org.example.model.User">
+        <!-- Задаю значения(внедряю зависимость // другой Спринг Бин ) через конструктор -->
+        <constructor-arg index="0" value="${user.name}"/>
+        <constructor-arg index="1" value="${user.age}"/>
+        <constructor-arg index="2" ref="meders_passport"/>
+    </bean>
+
+    <bean id="meders_passport" class="org.example.model.Passport">
+        <property name="id" value="1"/>
+        <property name="name" value="passport"/>
+        <property name="personalNumber" value="223344"/>
+    </bean>
+
+
+
+
+
+
+
+
+
+
+
+    <bean id="munara" class="org.example.model.User">
+        <!-- Инициализация бина с помощью сеттера -->
+        <property name="name" value="Munara"/>
+        <property name="age" value="17"/>
+    </bean>
+
+<!--    <bean id="bektur" class="org.example.model.User">-->
+<!--        &lt;!&ndash; Инициализация бина с помощью конструктора &ndash;&gt;-->
+<!--        <constructor-arg index="0" value="Bektur"/>-->
+<!--        <constructor-arg index="1" value="33"/>-->
+<!--    </bean>-->
+
+
+
+
+</beans>
